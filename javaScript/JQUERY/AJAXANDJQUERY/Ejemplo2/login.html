@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Noticias varias</title>
+<link href="externa.css" rel="stylesheet">
+<style>
+#noticias li {
+	display: inline-block;
+	margin-right: 30px;
+}
+#noticias li a {
+	padding: 5px 10px; 
+	background-color: white;
+	color: black;
+	text-decoration: none;	
+}
+#noticias li a:hover {
+	background-color: rgb(255,153,0);
+	color: white;
+}
+#contenidos_externos #noticia {
+	margin-top: 10px;
+	padding: 20px;
+	border: 1px solid white;	
+}
+</style>
+<script src="Jquery/jquery-2.1.4.js"></script>
+<script>
+
+$(document).ready(function() {
+//get() y post():estas funciones nos van a permitir realizar la peticion de informacion al servidor y tambien de procesar la informacion que viene de vuelta desde el servidor, sirve para manejar otros formatos como xml, json, texto, con la funcion load no se puede, ya que load solo maneja los formatos .html.
+
+//se puede utilizar tanto el get() como el post() da igual para realizar peticiones al servidor, pero se suele utilizar get() para hacer acciones en el servidor que NO impliquen modificaciones es decir solo acciones de consulta por ejemplo consultar en una base de datos registros si existen o no existen. y el post() queda reservado para acciones que si estamos modificando cosas en el servidor remoto, como por ejemplo borrar un archivo que se encuentre en el servidor, o tambien para hacer una accion a una BD como actualizar registros eliminar o insertar, se puede hacer lo mismo con el get(), pero la diferencia real es que el post() no tiene limites en cuanto al numero de caracteres o informacion que estamos enviando al servidor, mientras que el get() si tiene limitacion en el numero de caracteres o informacion que enviamos al servidor y es de "2048"
+	$("#login").submit(function(){//se va a ejecutar cuando enviemos el formulario
+	//acontinuacion crearemos la variable que va a reprecentar nuestro paquete, tenemos que recuperar uno por uno
+		/*var datosFormulario={usuario:$("#usuario").val(),//almacenamos dentro del valor usuario la informacion o valor que hay en el cuadro de texto con id="usuario", el nombre "usuario" tiene que ser igual que el del archivo php
+							 contra:$("#contra").val()
+		}*/
+		//para recuperar todo, a si nos evitamos crear uno por uno para recuperar la informacion del formulario, imaginemonos que uvieran 200 campos, entonces con serialize nos ayuda mucho y esta es una funcion de jquery
+		var datosFormulario=$(this).serialize();//con serialize estamos diciendo que recorra todos los campos del this "this apunta a #loguin que es el formulario", y segun los va recorriendo los va almacenando en la variable datosFormulario
+		
+		
+		//enviaremos el paquete"informacion datosFormulario" al archivo loguin.php que esta en el servidor, el servidor procesa el archivo y nos envia una respuesta y le decimos que esa respuesta la envie a la funcion procesarDatos
+		$.get("login.php",datosFormulario, procesarDatos).error(procesarError); //indicamos la ruta del archivo que va a procesar esto, el segundo argumento es el paquete de datos, es decir la informacion que le vamos a enviar, y el tercer argumento es la funcion que va a gestionar la respuesta del servidor en el caso de que haya exito"success". y en el caso de que haya un error se ejecuta el metodo del error procesarError. es decir la respuesta se procesa por el metodo procesarError si hay algun error como por ejemplo cuando se cae el internet, o cuando no se encuentra un archivo.etc. si no hay error entonces la respuesta se procesa con el metodo procesarDatos
+		
+		return false;//para quitar el comportamiento por defecto del formulario cuando se hace el evento submit"enviar informacion". que es  cargar una pagina nueva, es decir indicamos esto para que el formulario no se recargue en una pagina nueva. con return false le decimos que haga todo el trabajo de arriba pero que no haga la tarea por defecto que tiene asignada el evento submit
+	});
+	
+	
+		function procesarDatos(datos_Devueltos){//los datos devueltos se almacenan el el argumento de la funcion, los datos son "autorizado o fallo" que nos envia el archivo php que esta en el servidor
+			if(datos_Devueltos=="autorizado"){
+				$("#contenidos_externos").html("<p>Usuario Correcto, Bienvenido De Nuevo<p>");
+			}else{
+				$("#contenidos_externos").html("<p>Usuario No Autorizado</p>");
+			}
+		}
+		
+		function procesarError(){
+			var msgError="A Ocurrido Algo inesperado. Por Favor Intenta Mas Tarde";
+			$("#contenidos_externos").html("<p>"+msgError+"</p>");
+		}
+			
+}); 
+</script>
+</head>
+<body>
+
+	<div class="cabecera">
+		<p class="logo">Procesando respuesta del servidor</p>
+	</div>
+	<div class="contenido">
+		<div class="principal">
+			<form method="get" action="login.php" id="login">
+            <table>
+            	<tr>
+                	<td>					
+						<label for="usuario">Usuario:</label>
+                    </td>
+                    <td>
+						<input type="text" name="usuario" id="usuario">
+					</td>
+                    </tr>
+                    <tr>
+                    <td>
+						<label for="contra">Contaseña: </label>
+                     </td>
+                     <td>
+						<input type="text" name="contra" id="contra">
+					</td>
+                    </tr>
+                    <tr>
+                    <td colspan="2" align="center">
+						<input type="submit" name="boton" id="boton" value="Enviar" >
+					</td>
+                    </tr>
+                    </table>
+				</form>
+			<div id="contenidos_externos"></div>
+		</div>
+	</div>
+
+</body>
+</html>

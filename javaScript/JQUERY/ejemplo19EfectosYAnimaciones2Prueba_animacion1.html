@@ -1,0 +1,60 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Documento sin título</title>
+<style>
+
+img{
+	opacity:0.5;
+}
+
+
+</style>
+<script src="Jquery/jquery-1.6.3.min.js"></script>
+<script>
+
+$(document).ready(function() {
+
+	$("#imagen").click(function(){//la imagen respondera al evento click
+		$(this).animate(//funcion animate, puede modificar cualquier propiedad css que permita numeros ej:magin,height,width etc, los colores no se pueden modificar.
+			{
+				marginLeft:"+=150px"//sera autoincrementable, es decir que por cada click se movera 150px
+			},1000//tiempo que va a tomarse para hacer la animacion es decir 1 segundo
+		);
+	});
+	
+	
+	//          Crearemos Efecto Rollover manipulando la opacidad a la imagen2
+	
+	
+	
+	$("#imagen2").mouseover(function(){//cuando el mouse esta adentro de la imagen
+		$(this).animate(
+			{
+				opacity:1//no hace falta indicarlo en comillas ya que esta medida no es pixels, y recordermos que esta medica va de 0 a 1
+			},500
+		)	
+	});
+	$("#imagen2").mouseout(function(){//cuando el mouse esta fuera de la imagen
+		$(this).animate(
+			{
+				opacity:0.5//no hace falta indicarlo en comillas ya que esta medida no es pixels
+			},500
+		)	
+	});
+
+});
+
+
+
+
+</script>
+</head>
+
+<body>
+<img src="imagenes/carro.jpg" width="300" height="200" id="imagen"><br/>
+<img src="imagenes/1.jpg" width="300" height="200" id="imagen2">
+
+</body>
+</html>

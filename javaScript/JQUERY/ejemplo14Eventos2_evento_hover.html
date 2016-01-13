@@ -1,0 +1,71 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Documento sin título</title>
+<style>
+
+#imagenes{
+	width:1260px;
+	margin:auto;
+	
+}
+img{
+	padding:20px 30px;
+	width:250px;
+}
+
+#mensaje_img1 {
+	position: absolute;
+	left: 350px;
+	top: 362px;
+	width: 581px;
+	height: 215px;
+	background-color: #FF9;
+	font-size: 24px;
+	font-weight: bold;
+	padding: 25px;
+	border: dotted 2px #00F;
+}
+</style>
+
+<script src="Jquery/jquery-1.6.3.min.js"></script>
+
+<script>
+	$(document).ready(function(e) {
+        $("#mensaje_img1").hide();//para ocultar el div mensaje_img1 recien se cargue la pagina
+			   //SIN FUNCIONES ANONIMAS//
+		//$("#imagen1").hover(mensaje_on,mensaje_off);//indicamos que imagen1 va a responder al evento hover, es decir descecadenara la accion cuando coloquemos el mouse encima, y cuando quitemos el mouse de encima de la imagen1, Evento hover indica dos atributos, el primero indica la funcion que se ejecutara cuando se pase el mouse por encima de la imagen1, y el segundo indica otra funcion que se ejecutara cuando quitemos el mouse de encima de imagen1, hover es un evento de mouse que tiene dos atributos. 
+				//CON FUNCIONES ANONIMAS//
+		$("#imagen1").hover(function(){
+			$("#mensaje_img1").show();//para mostrar el div mensaje_img1
+		},
+		function(){
+			$("#mensaje_img1").hide();//para ocultar el div mensaje_img1 una vez que ya se a mostrado por el anterior metodo
+		});
+    });
+	/*function mensaje_on(){
+		$("#mensaje_img1").show();//para mostrar el div mensaje_img1
+	}
+	function mensaje_off(){
+		$("#mensaje_img1").hide();//para ocultar el div mensaje_img1 una vez que ya se a mostrado por el anterior metodo
+	}*/
+
+</script>
+</head>
+
+<body>
+
+<div id="mensaje_img1">Preciosa encina en mitad de la meseta castellana......</div>
+<div id="imagenes">
+
+<img src="imagenes/1.jpg" id="imagen1">
+<img src="imagenes/2.jpg" id="imagen2">
+<img src="imagenes/3.jpg" id="imagen3">
+<img src="imagenes/4.jpg" id="imagen4">
+
+
+
+</div>
+</body>
+</html>

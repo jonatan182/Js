@@ -1,0 +1,115 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Formularios I</title>
+<style>
+
+body{
+	background-color:#FFC;
+}
+
+#principal{
+	
+	padding:10px 10px 10px 50px;
+	background-color:#F93;	
+	box-shadow: 10px 10px 5px 0px #999999;
+	border-radius: 10px;
+}
+
+td{
+	padding-bottom:25px;
+}
+h1{
+	text-align:center;
+}
+
+
+#tarjeta, #fecha_tarjeta, #email, #n_tarjeta, #f_tarjeta, #e_mail{
+	visibility:hidden;
+	
+}
+
+
+</style>
+<script src="Jquery/jquery-1.6.3.min.js"></script>
+<script src="Jquery/jquery_validate.js"></script><!--Linkiamos la libreria para validar, esta libreria no funciona sin la de Jquery-->
+
+
+<script>
+
+	$(document).ready(function() {
+		
+		$("#form_datos").validate();//funcion de la libreria validate, indica que la validacion se aplicara a todo el formulario
+		
+		
+	});
+</script>
+</head>
+
+<body>
+<h1>Envío de datos</h1>
+<div id="contenedor">
+<form id="form_datos">
+  <table width="25%" border="0" align="center" id="principal">
+    <tr>
+    <!--esta Validacion mediante atributo class solo nos permite hacer una validacion por cada componente, es decir si queremos validar que el campo fecha tenga el formato fecha y a su ves que este campo sea obligatorio no nos sirviria esta forma.-->
+      <td>Nombre:</td>
+      <td><label for="nombre"></label>
+        <input type="text" name="nombre" id="nombre" class="required" title="Campo Obligatorio"></td><!---tiene que llevar el atributo class="required" por que a si lo espesifica el plugin validate, para que el sepa que este campo es obligatorio, si no hay informacion no se envia el formulario. el atributo title indica lo que se mostrar cuando el campo se envia sin informacion es decir cuando se hace la validacion-->
+    </tr>
+    <tr>
+      <td>Apellidos:</td>
+      <td><input type="text" name="apellido" id="apellido"  class="required" title="Campo Obligatorio"></td>
+    </tr>
+    <tr>
+      <td>Fecha Nacimiento</td>
+      <td><label for="f_nacimiento"></label>
+        <input type="text" name="f_nacimiento" id="f_nacimiento"  class="date" title="MM/DD/AAAA"></td><!--Con class date le estamos indicando al plugin o libreria validate que hay tiene que haber una fecha, emtitle indicamos lo que se mostrara si la fecha no es correcta, entonces que nos aparezca el mensaje. solo valida el formato mas no valida que sea campo requerido o obligatorio.-->
+    </tr>
+    <tr>
+      <td>Edad:</td>
+      <td><input name="edad" type="edad" id="edad" size="4" class="number" title="Edad No valida"></td><!--con class number indicamos que el campo solo almacenara numeros ya que la libreria validate mira que campos tiene class="number" y aplica la validacion, con title indicamos el mensaje que se mostrara si la edad no es valida-->
+    </tr>
+    <tr>
+      <td>Código Postal:</td>
+      <td><label for="c_postal"></label>
+        <input type="text" name="c_postal" id="c_postal"></td>
+    </tr>
+    <tr>
+      <td>Email:</td>
+      <td><label for="mail"></label>
+        <input type="text" name="mail" id="mail" class="email" title="Direccion No valida"></td><!--con class email indicamos gracias a la libreria validate que el campo tiene que ser un email por lo tanto valida que lleve un @, un punto y el dominio-->
+    </tr>
+    <tr>
+      <td>Página web:</td>
+      <td><label for="p_web"></label>
+        <input type="text" name="p_web" id="p_web" class="url" title="Url No Valida http://..."></td><!--con class url indicamos gracias a la libreria validate que el campo tiene que ser una utl por lo tanto valida que lleve el protocolo"http,ftp etc", un punto y el dominio-->
+    </tr>
+    
+     
+     <tr>
+      <td><p>País:</p></td>
+      <td><p>
+        <label for="pais"></label>
+        <select name="pais" id="pais">
+          <option>España</option>
+          <option>México</option>
+          <option>Colombia</option>
+          <option>Perú</option>
+          <option>Chile</option>
+          <option>Argentina</option>
+        </select>
+     </td>
+    </tr>
+    <tr>
+    <td colspan="2" align="center"><input type="submit" value="Enviar" id="comprobar"></td>
+   
+    </tr>
+  </table>
+  </form>
+</div>
+
+<div id="las_aficiones"></div>
+</body>
+</html>

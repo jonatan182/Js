@@ -1,0 +1,152 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Formularios I</title>
+<style>
+
+body{
+	background-color:#FFC;
+}
+
+#principal{
+	
+	padding:10px 10px 10px 50px;
+	background-color:#F93;	
+	box-shadow: 10px 10px 5px 0px #999999;
+	border-radius: 10px;
+}
+
+td{
+	padding-bottom:25px;
+}
+h1{
+	text-align:center;
+}
+
+
+</style>
+<script src="Jquery/jquery-1.6.3.min.js"></script>
+
+<script>
+
+	$(document).ready(function() {
+		$("#comprobar").click(comprobar_datos());//indicamos que el boton estara a la escucha de este eventon, cuando damos click en el boton, llamara a la funcion comprobar_datos, la indicamos sin parentesis ya que este es un atributo que llama a una funcion
+	});
+	
+	function comprobar_datos(){
+		//alert($("#nombre").val());//para recuperar el valor de la caja de texto #nombre, con val recuperamos lo que escriben adentro, esta funcion se ejecuta cuando den click en el boton comprobar
+		
+		//podemos almacenar el valor de la caja de texto en una variable y luego concatenarla EJ;
+		//var mi_nombre = $("#nombre").val();
+		//alert('Buenos Dias Señor(a): '+mi_nombre);
+		
+		//---------------Para acceder a todos los componentes de un determinado type, se hace con $(':type'), y oara acceder a todos los input se hace con $(":input") // el type hace referencia al tipo de input de los componentes de nuestro formulario, este objeto es de jquery
+		//$(':text');//para acceder a todos los cuadros de texto, ya que estas tienen el type="text"
+		/*$(":text").each(function() {//accedemos a todas las cajas de texto y recorremos una por una, para recuperar la informacion
+            alert($(this).val());//this almacena el objeto en el que nos encontramos actualmente, ya que each es un bucle que va a recorrer a todos los text uno por uno, y con this a cada uno recuperamos la informacion con val
+        });*/
+		
+		$(":input").each(function() {//selecciona a todas los input y recorremos uno por una, para recuperar la informacion
+            alert($(this).val());//this almacena el objeto en el que nos encontramos actualmente, ya que each es un bucle que va a recorrer a todos los text uno por uno, y con this a cada uno recuperamos la informaciono value con val, para los checkbox y radio buttons no sirven ya que cada uno tiene un value por que nos imprimira todos, necesitamos es recuperar el que esta seleccionado, se hace de otra manera
+        });
+		//para recuperar informacion de los radiobuttons, es decir cuales estan activados
+		if ($("#masculino").attr("checked")){//accedemos a la propiedad activado"checked", que nos devolvera true o false si esta activado o no
+			alert('Es Hombre')
+		}
+		else{
+			alert('Eres Mujer')
+		}
+		//para recuperar informacion de todos los checkbox es decir cuales esta activados o seleccionados
+		$(":checkbox").each(function() {
+            if($(this).attr("checked")){
+				alert("Adiciones: "+$(this).val());
+			}
+        });
+	}
+</script>
+</head>
+
+<body>
+<h1>Envío de datos</h1>
+<div id="contenedor">
+<form id="form_datos">
+  <table width="20%" border="0" align="center" id="principal">
+    <tr>
+      <td>Nombre:</td>
+      <td><label for="nombre"></label>
+        <input type="text" name="nombre" id="nombre" value="Obligatorio nombre"></td>
+    </tr>
+    <tr>
+      <td>Apellido:</td>
+      <td><input type="text" name="apellido" id="apellido"></td>
+    </tr>
+    <tr>
+      <td>Edad:</td>
+      <td><input type="text" name="edad" id="edad"></td>
+    </tr>
+    <tr>
+      <td>Género:</td>
+      <td><p>
+        <label>
+          <input type="radio" name="genero" value="Masculino" id="masculino">
+          masculino</label>
+        <br>
+        <label>
+          <input type="radio" name="genero" value="Femenino" id="femenino">
+          femenino</label>
+        <br>
+      </p></td>
+    </tr>
+    <tr>
+      <td>País:</td>
+      <td><label for="pais"></label>
+        <select name="pais" id="pais">
+          <option>España</option>
+          <option>México</option>
+          <option>Colombia</option>
+          <option>Perú</option>
+          <option>Chile</option>
+          <option>Argentina</option>
+        </select></td>
+    </tr>
+    <tr>
+      <td>Aficiones:</td>
+      <td><table width="200">
+        <tr>
+          <td><label>
+            <input type="checkbox" name="deporte" value="Deporte" id="deporte">
+            deporte</label></td>
+          <td><label>
+            <input type="checkbox" name="informatica" value="Informática" id="informatica">
+            informatica</label></td>
+        </tr>
+        <tr>
+          <td><label>
+            <input type="checkbox" name="lectura" value="Lectura" id="lectura">
+            lectura</label></td>
+          <td><label>
+            <input type="checkbox" name="cine" value="Cine" id="cine">
+            cine</label></td>
+        </tr>
+        <tr>
+          <td><label>
+            <input type="checkbox" name="bares" value="Bares" id="bares">
+            bares</label></td>
+          <td><label>
+            <input type="checkbox" name="naturaleza" value="Naturaleza" id="naturaleza">
+            Naturaleza</label></td>
+        </tr>
+       
+      </table></td>
+    </tr>
+    <tr>
+    <td colspan="2" align="center"><input type="button" value="Comprobar" id="comprobar"></td>
+   
+    </tr>
+  </table>
+  </form>
+</div>
+
+</body>
+</html>

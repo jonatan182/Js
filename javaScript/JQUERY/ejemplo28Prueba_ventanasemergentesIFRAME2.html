@@ -1,0 +1,25 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Documento sin título</title>
+<script src="Jquery/jquery-1.6.3.min.js"></script>
+<script>
+	$(document).ready(function(e) {
+		var PropVent = "width=400, height=400, left=300, top=200";
+        var miVentanaEmergente=open("http://www.pildorasinformaticas.es","Ventana1",PropVent);
+		
+		$("#botonCerrar").click(function(e){
+			miVentanaEmergente.close();
+			//return false;
+			e.preventDefault();//con esta instruccion estamos deshabilitando el comportamiento por defecto que tiene el link, es decir cuando demos click en el link no nos llevara al href, si no que se deshabilita ese comportamiento para que no se vuelva a cargar la ventana emergente ya que este link como no tiene nada en href, la pagina que nos llevara por defecto sera la misma y se volvera a cargar la ventana emergente aunque ya la hayamos cerrado, por eso deshabilitamos el comportamiento
+		});
+    });
+</script>
+</head>
+<body>
+<a href="http://www.pildorasinformaticas.es">Ir a Píldoras</a>
+<br><br><br>
+<a href="" id="botonCerrar">Cerrar</a>
+</body>
+</html>

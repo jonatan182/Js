@@ -1,0 +1,67 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Fotos con FancyBox</title>
+<link rel="stylesheet" href="css/site.css">
+<!--FancyBox es una herramienta para la visualización de IMAGENES,Iframes etc, contenido HTML y multimedia en una "caja de luz" al estilo de Mac que flota overtop de la página web.
+Fue construido utilizando la librería jQuery. Licencia bajo ambas licencias del MIT y GPL-->
+
+<!--fancyBox trabaja con tres librerias, la primera es la de estilos css, la segundo es la normal de jquery que hemos venido trabajando y la ultima la libreria js propia de fancyBox-->
+<link rel="stylesheet" href="fancybox/jquery.fancybox-1.3.4.css"><!--Linkeamos la hoja de estilo de fancyBox que es la que da el aspecto-->
+<script src="Jquery/jquery-1.6.3.min.js"></script> <!--Acontinuacion linkeamos la libreria jquery-->
+<script src="Jquery/fancybox/jquery.fancybox-1.3.4.js"></script><!--Linkeamos La libreria fancyBox-->
+
+<!--podemos tambien ingresar otras librerias, incorporaremos la de easing para anomaciones-->
+<script src="Jquery/jquery.easing-1.3.min.js"></script><!--Libreria de plugins para unas animaciones mas vistosas, especifica la animacion que tendra un una accion cuando se abre y otra cuando se cierra easingIn, easingOut-->
+
+<script>
+$(document).ready(function() {
+	
+	$("#galeria a").fancybox({//fancyBox es una funcion, y como funcion tiene sus parentesis de apertura y cierre
+	
+		overlayColor:"#797e79",//indicamos primer parametro como el color, indica el color de la superposicion
+		overlayOpacity: .6,//indicamos segundo parametro como la opacidad, Opacidad de la superposición (de 0 a 1; defecto - 0,6)
+		transitionIn:"elastic",//indicamos tercer parametro El tipo de transición. Se puede establecer en 'fade' 'elástica' o 'no'
+		transitionOut:"elastic",//la transitionIn-Out hace referencia al efecto especial que utilizaran las imagenes para aparecer y desaparecer en pantalla, cuando pulsamos en ellas y al irse
+		titlePosition:"outside",//hace referencia al La posición del título. Se puede establecer en "fuera", "interior" o "sobre"
+		cyclic:true, //al pasar las imagenes seran ciclicas, es decir una vez llega a la ultima pasara a la primera
+		changeSpeed:1000,//indica La velocidad de cambio de tamaño al cambiar elementos de la galería, en milisegundos, indicamos 1segundo
+		speedIn:2000,//indica la velocidad de transicion de la imagen en la entrada
+		speedOut:1000,//indica la velocidad de transicion de la imagen en la salida
+		
+		easingIn:"easeOutBounce",//ejecuta la animacion de easeOutBounce al abrir la imagen
+		easingOut:"easeOutBounce",//ejecuta la animacion de easeOutBounce al cerrar la imagen
+	});
+	
+
+});
+</script>
+</head>
+<body>
+
+<div class="cabecera">
+
+<img src="imgs/pildoras_1.png">
+	<p class="logo">Píldoras Informáticas </p>
+</div>
+
+<a href="imgs/paisaje1.JPG" rel="gallery" title="Bonito paisaje nocturno"><img src="imgs/paisaje1.JPG" width="70" height="70" alt="Paisaje nocturno"></a><!--Sin La Herramienta fancybox al pulsar en la imagen ejecuta el link y nos llevara al href del link "a"-->
+
+<div class="contenido">
+	<div class="principal">
+		<h1>Fotos</h1>
+        <!--Thumbnails  "Imagenes En Minuatura"-->
+		<div id="galeria">
+		<a href="imgs/paisaje1.JPG" rel="gallery" title="Bonito paisaje nocturno"><img src="imgs/paisaje1.JPG" width="70" height="70" alt="Paisaje nocturno"></a>
+		<a href="imgs/2.jpg" rel="gallery" title="Vacas pasando la vida"><img src="imgs/2.jpg" width="70" height="70" alt="vacas"></a>
+		<a href="imgs/paisaje2.jpg" rel="gallery" title="Palemeras al atradecer"><img src="imgs/paisaje2.jpg" width="70" height="70" alt="Palmeras"></a>
+		<a href="imgs/paisaje3.jpg" rel="gallery" title="Montañas"><img src="imgs/paisaje3.jpg" width="70" height="70" alt="Montañas"></a>
+		<a href="imgs/3.jpg" rel="gallery" title="Pico costero"><img src="imgs/3.jpg" width="70" height="70" alt="Pico"></a>
+		<a href="imgs/paisaje4.jpg" rel="gallery" title="Atradecer"><img src="imgs/paisaje4.jpg" width="70" height="70" alt="atardecer"></a></div>
+	</div>
+</div>
+
+
+</body>
+</html>

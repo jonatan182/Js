@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Documento sin t&iacute;tulo</title>
+<style type="text/css">
+	#contenedor1{
+		position:absolute;
+		top:250px;
+		left:100px;
+		width:200px;
+	}
+	ul{
+		list-style:none;
+	}
+	
+	.destacar{
+		background-color:#FF0000;
+		color:#FFFFFF;
+	}
+	#contenedor2{
+		
+		margin-left:380px;
+		margin-top:180px;
+	}
+</style>
+<script src="Jquery/jquery-1.6.3.min.js"></script><!--importamos libreria jquery-->
+<script>
+	$(document).ready(function(){
+		var elementos = document.querySelectorAll("li");/*obtenemos todos los componentes li*/
+		for(var i=0; i<elementos.length;i++){//recorremos el arreglo de li
+			elementos[i].addEventListener("mouseover",pon_imagen,false);//indicamos que estara a la escucha del evento mouseover y mouseout
+			elementos[i].addEventListener("mouseout",quitar_imagen,false);
+		}
+	});
+	function pon_imagen(e){
+		if(e.target==element1){
+			$("#element1").addClass("destacar");//agregamos stylo de clase css que se llama destacar al componente con id element1
+			$("img").attr("src","imagenes/cascada.jpg");//agregamos atributo a la etiqueta img, indicamos atributo src con la direccion de la imagen a colocar
+		}else if(e.target==element2){
+			$("#element2").addClass("destacar");//agregamos stylo de clase css que se llama destacar al componente con id element1
+			$("img").attr("src","imagenes/ciervo.jpg");
+		}else if(e.target==element3){
+			$("#element3").addClass("destacar");//agregamos stylo de clase css que se llama destacar al componente con id element1
+			$("img").attr("src","imagenes/lago.jpg");
+		}else if(e.target==element4){
+			$("#element4").addClass("destacar");//agregamos stylo de clase css que se llama destacar al componente con id element1
+			$("img").attr("src","imagenes/mariposa.jpg");
+		}
+	}
+	function quitar_imagen(e){
+		if(e.target==element1){
+			$("#element1").removeClass("destacar");//eliminamos el estilo de class destacar
+			$("img1").removeAttr("src");//eliminamos el atributo de la etiqueta html src, por lo que quitamos la direccion de imagen
+		}else if(e.target==element2){
+			$("#element2").removeClass("destacar");//eliminamos el estilo de class destacar
+			$("img2").removeAttr("src");
+		}
+		else if(e.target==element3){
+			$("#element3").removeClass("destacar");//eliminamos el estilo de class destacar
+			$("img3").removeAttr("src");
+		}else if(e.target==element4){
+			$("#element4").removeClass("destacar");//eliminamos el estilo de class destacar
+			$("img4").removeAttr("src");
+		}
+	}
+</script>
+</head>
+
+<body>
+<div id="contenedor1">
+	<ul>
+		<li id="element1">imagen1</li>
+		<li id="element2">imagen2</li>
+		<li id="element3">imagen3</li>
+		<li id="element4">imagen4</li>
+	</ul>
+</div>
+<div id="contenedor2">
+	<img src="" height="300" width="300"/>
+</div>
+</body>
+</html>

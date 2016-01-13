@@ -1,0 +1,173 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Formularios I</title>
+<style>
+
+body{
+	background-color:#FFC;
+}
+
+#principal{
+	
+	padding:10px 10px 10px 50px;
+	background-color:#F93;	
+	box-shadow: 10px 10px 5px 0px #999999;
+	border-radius: 10px;
+}
+
+td{
+	padding-bottom:25px;
+}
+h1{
+	text-align:center;
+}
+
+
+</style>
+<script src="Jquery/jquery-1.6.3.min.js"></script>
+
+<script>
+
+	$(document).ready(function(){
+		$("#form_datos").submit(function(){//indicamos que al enviar el formulario ocurra algo, por eso apuntamos al formulario
+		//y a su ves indicamos la funcion de la libreria jquery submit para que ocurra halgo despues de enviar el formulario, y lo que ocurrira es ejecutar lo que esta adentro de la funcion anonima
+		
+			//Hay una funcion de la libreria jquery por cada evento del formulario, "Al Enviar "submit" al obtener el foco"focus" o al perder el foco "blur",al hacer click  "click",o al cambiar de item o informacion "change" etc."
+			
+			
+			//--------------Elaboraremos Una Validacion De Los Datos, Es Decir  Que Los Campos Sean Obligatorios, Si Los Campos Estan Vacios Se Mostrara Una Alerta Diciendo Que El Campo Es Obligatorio Y Se Anulara El Comportamiento Del Submit Del Form Es Decir No Enviara Los La Informacion A l url-------------------
+			
+			if($("#nombre").val()==""||$("#nombre").val()=="Obligatorio nombre"){//si el valor es vacio o tiene el valor por defecto mostrara la alerta diciendo que el campo es obligatorio y los datos del formulario no se enviaran
+				alert('Debes Ingresar Un Nombre');
+				
+				$("#nombre").focus();//para que el foco aparezca en la caja de texto nombre, ya que sirve para hacer saber al usuario que ese campo es el que tiene que llenar,
+				
+				return false;//anula el comportamiento por defecto del form "submit", es decir que la pagina no se redireccionara 
+				//y la informacion no se enviara a la url
+			}
+		});
+		//vemos cómo gestionar los eventos de formulario al coger y perder el foco utilizando las funciones JQuery focus() y blur().
+		//Evaluamos que al obtener el foco se borre el value si es igual al que esta por defecto
+		$("#nombre").focus(function(){//indicamos que al obtener el foco ocurrira algo, lo podemos indicar donde deceemos, al inicio o al final
+			var campo_nombre = $(this);
+			if(campo_nombre.val()==campo_nombre.attr("value")){//comparamos que si en la caja de texto tiene el valor de "Obligatorio nombre", se borrara el val
+				$("#nombre").val("");//borramos el  value
+			}
+		});
+		//evaluamos el campo edad que sea un numero, se evaluara una ves que se pierda el foco
+		$("#edad").blur(function(){//descencadenara el evento cuando el campo edad pierda el foco
+			if(isNaN($(this).val())||$(this).val()==0){//con this hacemos referencia al campo edad, y con val obtenemos el valor, luego lo comparamos si es un numero con isNaN "is Not At Number", devolviendo true si no es un numero o false si es un numero
+				alert("No Es Un Numero");
+				$("#edad").focus();//indicamos el foco en el campo edad, para que no pueda continuar hasta que ingrese un numero
+				$(this).val("");//para borrar la informacion del campo edad
+			}
+		});
+		
+		//evento click es muy util para recuperar valores de radioButtons y checkbox, ya que estos para obtener el valor toca checkearlos
+		$(":radio").click(function(){//descencadena el evento cuando se haga click en cualquier radio
+			alert($(this).val());
+		});
+		
+		var miArray = new Array();//para almacenar los checkbox seleccionados
+		var contador=0;
+		$(":checkbox").click(function(){//descencadena el evento  cuando se haga click en cualquier check
+			miArray[contador] = $(this).val();//almacenamos el valor de cada cekckbox chekeado en una posicion del array
+			//alert("Posicion: " + contador + " " + miArray[contador]);
+			//$("#mis_aficiones").append("<h6>"+miArray[contador]+"</h6>");
+			$("#mis_aficiones").append(miArray[contador]).append("<br/>");//otra forma de concatenar instruccion, concatenamos salto de linea
+			contador++;
+		});
+		
+		//evento change() es muy util para reculerar el valor del item del combobox seleccionado, es muy utul para los combobox ya que este evento se descencadena cuando cambia el valor o la informacion del desplegable"combox", es decir cuando seleccionamos otro item, el evento click no seria apropiado para los combobox ya que cuando damos click se ejecuta el evento sin haber indicado el otro item
+		$("#pais").change(function(){//se descencadena el evento cuando se cambie te item en el desplegable"combobox"
+			alert("Pais De Residencia: "+$(this).val());
+		});
+	});
+</script>
+</head>
+
+<body>
+<h1>Envío de datos</h1>
+<div id="contenedor">
+<form id="form_datos">
+  <table width="20%" border="0" align="center" id="principal">
+    <tr>
+      <td>Nombre:</td>
+      <td><label for="nombre"></label>
+        <input type="text" name="nombre" id="nombre" value="Obligatorio nombre"></td><!--Con Value Indicamos El valor o informacion por defecto que mostrar la caja de texto-->
+    </tr>
+    <tr>
+      <td>Apellido:</td>
+      <td><input type="text" name="apellido" id="apellido"></td>
+    </tr>
+    <tr>
+      <td>Edad:</td>
+      <td><input type="text" name="edad" id="edad"></td>
+    </tr>
+    <tr>
+      <td>Género:</td>
+      <td><p>
+        <label>
+          <input type="radio" name="genero" value="Masculino" id="masculino">
+          masculino</label>
+        <br>
+        <label>
+          <input type="radio" name="genero" value="Femenino" id="femenino">
+          femenino</label>
+        <br>
+      </p></td>
+    </tr>
+    <tr>
+      <td>País:</td>
+      <td><label for="pais"></label>
+        <select name="pais" id="pais">
+          <option>España</option>
+          <option>México</option>
+          <option>Colombia</option>
+          <option>Perú</option>
+          <option>Chile</option>
+          <option>Argentina</option>
+        </select></td>
+    </tr>
+    <tr>
+      <td>Aficiones:</td>
+      <td><table width="200">
+        <tr>
+          <td><label>
+            <input type="checkbox" name="deporte" value="Deporte" id="deporte">
+            deporte</label></td>
+          <td><label>
+            <input type="checkbox" name="informatica" value="Informática" id="informatica">
+            informatica</label></td>
+        </tr>
+        <tr>
+          <td><label>
+            <input type="checkbox" name="lectura" value="Lectura" id="lectura">
+            lectura</label></td>
+          <td><label>
+            <input type="checkbox" name="cine" value="Cine" id="cine">
+            cine</label></td>
+        </tr>
+        <tr>
+          <td><label>
+            <input type="checkbox" name="bares" value="Bares" id="bares">
+            bares</label></td>
+          <td><label>
+            <input type="checkbox" name="naturaleza" value="Naturaleza" id="naturaleza">
+            Naturaleza</label></td>
+        </tr>
+       
+      </table></td>
+    </tr>
+    <tr>
+    <td colspan="2" align="center"><input type="submit" value="Comprobar" id="comprobar"></td><!--Indicamos como submit, para enviar toda la informacion de los controles a la pagina o url que se menciona en el action del form, si lo dejaramos como button, este solo ejecunta un evento a la pagina y no envia informacion a la url-->
+   
+    </tr>
+  </table>
+  </form>
+</div>
+<div id="mis_aficiones"></div>
+</body>
+</html>

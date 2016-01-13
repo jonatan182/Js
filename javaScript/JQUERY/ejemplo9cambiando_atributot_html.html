@@ -1,0 +1,77 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Documento sin título</title>
+<style>
+
+table{
+	text-align:center;
+	width:50%;
+	border:none;
+	margin:auto;
+}
+
+img{
+	padding:0 5px;
+}
+h1{
+	text-align:center;
+}
+
+</style>
+<script src="Jquery/jquery-1.6.3.min.js"></script>
+
+<script>
+
+	$(document).ready(function(){
+	//forma larga
+		//document.getElementById("img1").addEventListener("mouseover", cambiar, false);//indicamos que la img1  escuchara un evento de mouseover es decir cuando pasamos el mouse por la imagen, esta llamara a la function cambiar
+		//document.getElementById("img1").addEventListener("mouseout",restaurar, false);//indicamos que la img1  tambien escuchara un evento de mouseout es decir cuando quietamos el mouse por la imagen, esta llamara a la function restaurar
+		//forma corta
+		var imagenes = document.querySelectorAll("img");
+		for(var i=0; i<imagenes.length; i++){
+			imagenes[i].addEventListener("mouseover",cambiar,false);
+			imagenes[i].addEventListener("mouseout", restaurar, false);
+		}
+	});
+	function cambiar(e){
+
+		if(e.target==img1){//si el evento proviene al componente con id="img1"
+			$("#img1").attr("src","imagenes/mariposa.jpg");//con attr modificamos los atributos, en este caso modificamos el atributo src de img1, indicando que vamos a poner otra imagen
+		}else if(e.target==img2){
+			$("#img2").attr("src","imagenes/lago.jpg");
+		}else if(e.target==img3){
+			$("#img3").attr("src","imagenes/ciervo.jpg");
+		}else if(e.target==img4){
+			$("#img4").attr("src","imagenes/mariposa.jpg");
+		}
+	}
+	function restaurar(e){
+
+		if(e.target==img1){//si el evento proviene al componente con id="img1"
+			$("#img1").attr("src","imagenes/arbol.jpg");//colocamos la imagen que tenia cuando el mouse este afuera de la imagen1
+		}else if(e.target==img2){
+			$("#img2").attr("src","imagenes/barco.jpg");
+		}else if(e.target==img3){
+			$("#img3").attr("src","imagenes/cascada.jpg");
+		}else if(e.target==img4){
+			$("#img4").attr("src","imagenes/ciervo.jpg");
+		}
+	}
+
+</script>
+</head>
+
+<body>
+<h1>Galería de imágenes</h1>
+<table width="100%" border="0">
+  <tr>
+    <td><img src="imagenes/arbol.jpg" id="img1" width="250" height="250"></td>
+    <td><img src="imagenes/barco.jpg" id="img2" width="250" height="250"></td>
+    <td><img src="imagenes/cascada.jpg" id="img3" width="250" height="250"></td>
+    <td><img src="imagenes/ciervo.jpg" id="img4" width="250" height="250"></td>
+  </tr>
+</table>
+</body>
+</html>

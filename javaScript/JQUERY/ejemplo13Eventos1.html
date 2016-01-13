@@ -1,0 +1,66 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Documento sin título</title>
+<style>
+	h1{
+		text-align:center;
+	}
+	body{
+		background-color:#334873;
+		color:#FFF;
+	}
+	#principal{
+		width:60%;
+		margin:auto;
+	}
+	a{
+		color:#FFF;
+		font:bold 20px Verdana, Geneva, sans-serif;
+	}
+</style>
+
+<script src="Jquery/jquery-1.6.3.min.js"></script>
+<script>
+	$(document).ready(function(){//funcion para que el codigo que este adentro se ejecute despues de cargar la pagina
+	alert("hola");
+		$("html").dblclick(function(){//apuntamos a toda la pagina web, desde el html que se abre hasta el html que se cierra, y decimos que este objeto va a responder al evento dobleclick desde cualquier elmento de la pagina o afuera de cualquier elemento, esta funcion dblclick() es de jquery junto con las demas que veremos, andentro podemos indicar una funcion normal o una anonima
+			alert("Evento Doble Click");
+		
+		});
+		$("p").dblclick(function(){//apuntamos a todoa la parrafos de la pagina web, desde el html que se abre hasta el html que se cierra, y decimos que este objeto va a responder al evento dobleclick ain necesidad de hacer un bocle for, asi apuntamos a doros los objetos p
+			alert("Evento Doble Click Parrafo");
+		
+		});
+		$("a").mouseover(function(){//indicamos que "a" va a responder al evento mouseover, es decir descecadenara la accion cuando movamos el mouse por encima de a
+			var mensaje="<p>Evento mouseover, estas pasando el mouse por encima del link</p>";
+			$("#principal").append(mensaje);/*lo que conseguimos con esta instruccion es agregar a dentro del contenedor #principal lo que esta adentro de la funcion append, lo agrega DESPUES de lo que ya tenga, lo agrega debajo del formulario */
+		});
+		$("#el_boton").click(function(){//indicamos que el boton va a responder al evento click del boton, es decir descecadenara la accion cuando pulsemos click en el boton, modificaremos el texto del boton cuando se haga click
+			$(this).val("Para De Hacer Click");//this hace referencia al boton, y con val lo que hacemos es modificar el value del elemento en concreto que es #el_boton si ya lo tiene, si no tiene un value se asigna.
+		});
+		$("#el_campo").focus(function (){//indicamos que la caja de texto  va a responder al evento focus, es decir cuando seleccionamos el elementos con el mouse con con la tecla tabulador 
+			$(this).val("Ahora Vas A Escribir");//asignamos un value a la caja de texto "el_campo"
+		});
+	});
+</script>
+</head>
+
+<body>
+<h1>Introduccion A Eventos</h1>
+<div id="principal">
+	<p><a href="#">Un Link</a></p>
+    <form action="#" method="get">
+    	<fieldset>
+        	<legend>Forulario</legend><p>
+            <input type="button" name="button" id="el_boton" value="Un Boton"/>
+            </p>
+            <p><input type="text" name="textfield" id="el_campo"/></p>
+        </fieldset>
+    </form>
+    <p id="uno">Hola</p>
+    <p class="dos">Como estas</p>
+</div>
+</body>
+</html>

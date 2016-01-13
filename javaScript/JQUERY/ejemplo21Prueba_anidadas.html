@@ -1,0 +1,74 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Efecto anidadas</title>
+<style>
+
+#titulo{
+	margin-left:150px;
+}
+
+#foto p{
+	background-color:#000;
+	color:#FFF;
+	font-size:24px;
+	text-align:center;
+	font-weight:bold;
+	width:300px;
+}
+h1{
+	text-align:center;
+}
+
+</style>
+<script src="Jquery/jquery-1.6.3.min.js"></script>
+<script>
+
+$(document).ready(function() {
+	
+	$("#titulo").hide();//para ocultar el titulo
+	$("#foto img").width(60).height(40).click(//cambiamos el tamaño, de manera encadenada, el alto y el ancho, tambien inidcamos que respondera al evento click, y que al hacer click la imagen crecera poco a poco de manera animada y luego aparecera el titulo o rotulo
+		function(){
+			$(this).animate({//funcion animate, puede modificar cualquier propiedad css que permita numeros ej:magin,height,width etc, los colores no se pueden modificar.
+				marginLeft:"150px",//para moverlo a la derecha, ya que va a dejar un espacio por la parte izquierda
+				width:"300px",//para que crezca hasta los 300 px
+				height:"200px",//para indicar el alto de la imagen, no hace falta indicar "," coma ya que es el ultimo parametro		
+			},4000/*indicamos el tiempo que se demorara en hacer el animate*/,function()/*funcion anidada para mostrar el rotulo o el titulo*/	{
+					$("#titulo").fadeIn(2000).delay(1000).fadeOut(2000);//una vez que la imagen crece aparecera el rotulo con un efecto de fadein, solo con un evento click de la imagen, estamos haciendo estas dos operaciones, esto es gracias a las funciones anidadas, luego con delay indicamos que estara solo 1 segundo en pantalla y con fadeout indicamos que una vez terminado ese segundo se desaparecera tardandose 2 segundos, todo con funciones encadenadas.
+				}
+			).delay(5000);//termina animate, y utilizamos las funciones encadenadas indicando que despues de animar este 5 segundos en pantalla
+			//condo termine la animacion anterior comenzara esta segunda animacion
+			$(this).animate({//funcion animate, puede modificar cualquier propiedad css que permita numeros ej:magin,height,width etc, los colores no se pueden modificar.
+				marginLeft:"0px",//para moverlo a la izquierda, ya que va a dejar un espacio por la parte izquierda mas reducido ya que lo teniamos gracias a la animacion anterior en 150
+				width:"60px",//para que se reduzca a 60 px, ya que gracias a la animacion anterior estaba en 300
+				height:"40px"//para indicar el alto de la imagen, no hace falta indicar "," coma ya que es el ultimo parametro
+			},4000/*indicamos el tiempo que se demorara en hacer el animate*/);
+		}
+	);//termina funcion dque esta dentro del evento click
+	
+});// termina función ready
+
+
+
+
+</script>
+</head>
+
+<body>
+<h1>
+
+Prueba imagen
+
+</h1>
+
+<div id="foto">
+
+	<img src="imagenes/1.jpg" width="300" height="200" id="imagen1">
+
+	<p id="titulo">Árbol</p>
+
+</div>
+
+</body>
+</html>

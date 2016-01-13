@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Noticias varias</title>
+<link href="externa.css" rel="stylesheet">
+<style>
+#noticias li {
+	display: inline-block;
+	margin-right: 30px;
+}
+#noticias li a {
+	padding: 5px 10px; 
+	background-color: white;
+	color: black;
+	text-decoration: none;	
+}
+#noticias li a:hover {
+	background-color: rgb(255,153,0);
+	color: white;
+}
+#contenidos_externos #noticia {
+	margin-top: 10px;
+	padding: 20px;
+	border: 1px solid white;	
+}
+</style>
+<script src="../Jquery/jquery-2.1.4.js"></script>
+<script>
+//xhr"XMLHttpRequesthttp es un objeto perteneciente a los navegadores  que permite hacer peticiones a un servidor, y que esas peticiones nos vengan de respuesta. es decir que es como una especie de vehiculo o puente  que se utiliza para lanzar peticiones al servidor y recibirlas, todos los navegadores web ya contienen este objeto desde hace varios años y es el nucleo "core" de ajax,es la parte mas importante de la tecnologia ajax
+//la funcion load:es una funcion de la libreria jquery que se encarga de realizar una peticion al servidor utilizando el objeto xhr"XMLHttpRequesthttp" y procesa la respuesta del servidor utilizando el mismo objeto xhr"XMLHttpRequesthttp. unicamente se pueden hacer peticiones html es decir que nos devuelva un archivo o parte de un archivo html, si queremos procesar o hacer una peticion de informacion con formato xml, texto, json.etc, no nos servira la funcion load, para estos casos se utiliza las funciones get() y post()."
+
+//get() y post():estas funciones nos van a permitir realizar la peticion de informacion al servidor y tambien de procesar la informacion que viene de vuelta desde el servidor
+$(document).ready(function() {
+//tenemos que trabajar en remoto es decir con la pagina subida en un servidor
+	$("#noticias a").click(function(){//cuando se haga click en un vinculo dentro de la lista noticias
+		//$("#contenidos_externos").load("deportivas.html #noticia");//la funcion load, hace un request, una peticion al servidor utilizando el objeto xhr"XMLHttpRequesthttp", el servidor responde proporcionando el archivo que le hemos pedido"parte de una pagina, solo el apartado del contenedor #noticia, si no indicamos #noticia nos devuelve toda la pagina, lo hacemos con este fin para que no nos devuelva el titulo" que es el que esta adentro de la funcion load y una ves que el servidor nos ha respondido enviandonos este archivo html cargaremos ese contenido a al contenedor con id="contenidos_externos. solo funciona con protocolos de internet http etc, es decir que en local no funciona nos mostraria error del objeto XMLHttpRequesthttp, data, chrome, chrome-extension, https. ese objeto es el que se encarga de las request o peticiones del navegador, para que funcione tenemos que subirlo a un servidor"
+		
+		var url = $(this).attr("href");//para recuperar el valor del atributo href del componente que se hizo click
+		$("#contenidos_externos").load(url+" #noticia");//para cargar la pagina que corresponde a cada link y no cargar solo una como lo teniamos anteriormente, a la hora de concatenar tenemos que dejar un espacio
+		
+		return false;//innabilitamos el comportamiento por defecto que tiene el vinculo o etiqueta "a", para que no este en conflicto con la funcion load, es decir si innabilitamos el comportamiento por defecto cuando demos click el vinculo se ejecutara el href y de esa manera se abrira en otra pagina nueva cargando el servidor con la pagina del href
+	});
+
+			
+}); 
+</script>
+</head>
+<body>
+
+	<div class="cabecera">
+		<p class="logo">Píldoras informáticas. Función load()</p>
+	</div>
+	<div class="contenido">
+		<div class="principal">
+			<h1>Noticias varias</h1>
+			<ul id="noticias">
+			<li><a href="generales.html">Noticias Generales</a></li>
+            <li><a href="deportivas.html">Noticias Deportivas</a></li>
+            <li><a href="tiempo.html">Noticias del Tiempo</a></li>
+			</ul>
+			<div id="contenidos_externos"></div>
+		</div>
+	</div>
+
+</body>
+</html>

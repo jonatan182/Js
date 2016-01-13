@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Usando Arrays</title>
+<link rel="stylesheet" href="css/micss.css">
+<script>
+	var articulos=["Sacos","Pantalones","Gorras"];
+	//var articulos = new array("Sacos","Pantalones","Gorras");//segunda forma
+	//var articulos =[];//array vacio para luego ingresar articulos
+</script>
+</head>
+
+<body>
+<div class="contenedor">
+  <div class="header">
+    <p class="logo">JavaScript Arrays <i class="mm">Píldoras Informáticas
+     </p>
+  </div>
+  <div class="contenido">
+    <div class="principal">
+      <h1>Manejando Arrays</h1>
+      <script>
+	  
+
+		document.write("<p>"+"El Primer Articulo Es: "+"<strong>");
+		document.write(articulos[0]+"</strong></p>");//primer articulo
+		alert(articulos.length);
+		
+		document.write("<p>"+"El Ultimo Articulo Es: "+"<strong>");
+		document.write(articulos[articulos.length-1]+"</strong></p>");//ultimo articulo ya que length cuenta de uno a tres y devuelve 3 y cuando imprimimos se imprime de 0 a 2 por eso se hace la resta
+		
+		articulos.unshift(prompt("Ingresa Nuevo Articulo Al comienzo"));;//agregamos elemento al principio del array
+		document.write("<p>"+"El Primer Articulo Ahora Es: "+"<strong>");
+		document.write(articulos[0]+"</strong></p>");//primer articulo
+		
+		articulos.push(prompt("Ingresa Nuevo Articulo Al Final"));
+		document.write("<p>"+"El Ultimo Articulo Ahora Es: "+"<strong>");
+		document.write(articulos[articulos.length-1]+"</strong></p>");//ultimo articulo ya que length cuenta de uno a tres y devuelve 3 y cuando imprimimos se imprime de 0 a 2 por eso se hace la resta
+		
+
+		articulos.pop();//eliminamos el ultimo elemento
+		alert("Eliminamos El Ultimo Articulo");
+		document.write("<p>"+"El Ultimo Articulo Ahora Es: "+"<strong>");
+		document.write(articulos[articulos.length-1]+"</strong></p>");//ultimo articulo ya que length cuenta de uno a tres y devuelve 3 y cuando imprimimos se imprime de 0 a 2 por eso se hace la resta
+		
+		articulos.shift();//eliminamos el primer articulo
+		alert("Eliminamos El Primer Articulo");
+		document.write("<p>"+"El Primer Articulo Ahora Esss: "+"<strong>");
+		document.write(articulos[0]+"</strong></p>");//primer articulo
+		
+	  </script>
+     </div>
+  </div>
+  
+</div>
+</body>
+</html>

@@ -1,0 +1,149 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Formularios I</title>
+<style>
+
+body{
+	background-color:#FFC;
+}
+
+#principal{
+	
+	padding:10px 10px 10px 50px;
+	background-color:#F93;	
+	box-shadow: 10px 10px 5px 0px #999999;
+	border-radius: 10px;
+}
+
+td{
+	padding-bottom:25px;
+}
+h1{
+	text-align:center;
+}
+
+
+#tarjeta, #fecha_tarjeta, #email, #n_tarjeta, #f_tarjeta, #e_mail{
+	visibility:hidden;
+	
+}
+/*El Plugin de jquery de validacion nos va a generar siempre unas etiquetas "label con atributo class="error" de estas caracteristicas para marcar el error*/
+label.error{/*Para indicar estilo a los mensajes de cada validacion, para ver el componente de los mensajes tuvimos que ir a la pestaña de dreamviwer "En vivo", luego en codigo en vivo y seleccionar el mensaje para saber que componente html se genera y descrubrimos que era un label con atributo class de error, gracias a eso ahora podemos aplicar estilo*/
+		color:#F00;
+}
+input.error{/*cuando un campo no cumple con los requerimientos de la validacion aparece el mensaje la etiqueta de label con el mensaje de error, y a su vez a la etiqueta input se crea un atributo class="error" y termina el flujo del programa es decir que los datos no se enviaran hasta que no se valide*/
+	border:solid #900 2px;/*Aplicamos un borde a los input que no cumplen con la validacion*/
+}
+</style>
+<script src="Jquery/jquery-1.6.3.min.js"></script>
+<script src="Jquery/jquery_validate.js"></script><!--Linkiamos la libreria para validar, esta libreria no funciona sin la de Jquery-->
+
+
+<script>
+
+	$(document).ready(function() {
+		//vamos a hacaer una multiple validacion, es decir que un campo tenga dos validaciones, ya que en el ejemplo anterio solo se podia aplicar una validacion por medio del atributto class, para indicar dos validaciones tenemos que hacerlo de la siguiente manera en la funcion validate
+		$("#form_datos").validate({//funcion de la libreria validate, indica que la validacion se aplicara a todo el formulario
+			//zona de reglas			
+			rules:{//indicamos las reiglas
+				nombre:"required", //nos referimos al name del componente, indicamos que es un campo requerido
+				apellido:"required",
+				f_nacimiento:{//de esta manera indicamos multiples validaciones a un campo, puede haber mas de dos si es necesario, y es el ejemplo central para esta pag.
+					date:true,//indicamos que el campo tendra un formato de fecha
+					required:true//indicamos que el campo es obligatorio
+				},
+				edad:{//de esta manera indicamos multiples validaciones a un campo
+					number:true,//indicamos que sea un numero
+					range:[1,105]//indicamos un rango
+				},
+				mail:"email",//indicamos que el campo email permitira un correo valido con @ con punto y dominio"
+				p_web:"url"//indicamos que el campo url permitira una url valida con el protocolo"http, fttp" punto y dominio
+			},//zona de mensajes
+			messages:{//para indicar los mensages de validacion, ya que con el atributo title solo se puede estipular un solo msj
+				nombre:"Nombre Obligatorio",
+				apellido:"Apellido Obligatorio",
+				f_nacimiento:{//oara indicar multiples mensajes a un campo
+					required:"Fecha Obligatoria",//Indicamos el mensaje para la validacion obligatorio o required
+					date:"Formato incorrecto MM/DD/AAAA"//indicamos mensaje para la validacion del fotmato
+				},
+				edad:{
+					number:"Tiene Que Ser Un Valor Numerico",
+					range:"El Rango De La Edad No Es Valido 1-105"
+				},
+				mail:"E-mail Incorrecto",
+				p_web:"http://..."
+			}
+		});
+		
+		
+	});
+</script>
+</head>
+
+<body>
+<h1>Envío de datos</h1>
+<div id="contenedor">
+<form id="form_datos">
+  <table width="25%" border="0" align="center" id="principal">
+    <tr>
+      <td>Nombre:</td>
+      <td><label for="nombre"></label>
+        <input type="text" name="nombre" id="nombre"></td>
+    </tr>
+    <tr>
+      <td>Apellidos:</td>
+      <td><input type="text" name="apellido" id="apellido"></td>
+    </tr>
+    <tr>
+      <td>Fecha Nacimiento</td>
+      <td><label for="f_nacimiento"></label>
+        <input type="text" name="f_nacimiento" id="f_nacimiento"></td>
+    </tr>
+    <tr>
+      <td>Edad:</td>
+      <td><input name="edad" type="edad" id="edad" size="4"></td>
+    </tr>
+    <tr>
+      <td>Código Postal:</td>
+      <td><label for="c_postal"></label>
+        <input type="text" name="c_postal" id="c_postal"></td>
+    </tr>
+    <tr>
+      <td>Email:</td>
+      <td><label for="mail"></label>
+        <input type="text" name="mail" id="mail"></td>
+    </tr>
+    <tr>
+      <td>Página web:</td>
+      <td><label for="p_web"></label>
+        <input type="text" name="p_web" id="p_web"></td>
+    </tr>
+    
+     
+     <tr>
+      <td><p>País:</p></td>
+      <td><p>
+        <label for="pais"></label>
+        <select name="pais" id="pais">
+          <option>España</option>
+          <option>México</option>
+          <option>Colombia</option>
+          <option>Perú</option>
+          <option>Chile</option>
+          <option>Argentina</option>
+        </select>
+     </td>
+    </tr>
+    <tr>
+    <td colspan="2" align="center"><input type="submit" value="Enviar" id="comprobar"></td>
+   
+    </tr>
+  </table>
+  </form>
+</div>
+
+<div id="las_aficiones"></div>
+</body>
+</html>

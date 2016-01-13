@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Documento sin t&iacute;tulo</title>
+<style type="text/css">
+	#anuncio{
+		background-color:#000000;
+		color:#FFFFFF;
+		font-size:40px;
+	}
+</style>
+<script src="Jquery/jquery-1.6.3.min.js"></script>
+<script>
+
+	$(document).ready(function(){/*para que el codigo se ejecute despues de cargar la pagina web*/
+		$("#anuncio").width("500").height("500").text("¡Vende!").hide().fadeIn(5000);//funciones encadenadas, aplicamos cada propiedad en una sola linea
+		//---manera simplificada---
+		//.hide("500");ocultamos el div #anuncio
+//		.fadeIn(5000); hacemos aparecer lentamente en 5 segundos
+//		text("¡Vende!")sustituimos el texto que puede aparecer dentro del contenedor 
+	});
+
+</script>
+</head>
+
+<body>
+<div id="anuncio">
+	¡Compra!
+</div>
+<!--<script type="text/javascript">
+	var anuncio = document.getElementById("anuncio");
+	anuncio.style.width="500px";//indicamos ancho del div
+	anuncio.style.height="500px";//indicamos alto del div
+	anuncio.innerHTML="¡Vende!";//sustituimos el texto que puede aparecer dentro del contenedor 
+</script>-->
+</body>
+</html>

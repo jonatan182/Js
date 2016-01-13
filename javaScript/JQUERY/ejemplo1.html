@@ -1,0 +1,26 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Hola Alumnos</title>
+<script src="Jquery/jquery-1.6.3.min.js"></script><!--Agregamos libreria jquery-->
+
+<script>//este escript siempre debe estar despues del codigo css
+	$(document).ready(function (){//pone a la espera nuestro codigo javascript, la libreria jquery, y cuando carga la pagina se puede utilizar ya la libreria jquery. espera de que cargue el resto de la pagina web para aplicar el codigo javascript, en este caso tenemos que primero cargar la imagen y luego se aplica el efecto fadein
+		$("body").hide().fadeIn(5000);
+	});
+</script>
+</head>
+
+<body>
+
+<h1>Hola alumnos
+</h1>
+
+<p>Bienvenidos al curso de JavaScript de <span>Píldoras Informáticas</span></p>
+<img src="imagenes/1.jpg" width="35%">
+
+
+
+</body>
+</html>

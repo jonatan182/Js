@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Documento sin título</title>
+<script src="Jquery/jquery-1.6.3.min.js"></script>
+<script>
+
+	$(document).ready(function() {
+		
+		   //efecto rollover se conoce cuando una imagen es cambiada cuando se pasa el mouse por encima y cuando este se quita vuelve a cambiar ya sea su pacidad o por otra imagen
+		
+		var foto_nueva = new Image();//creamos objeto imagen, por tal razon podemos ver  o modificar todos los metodos y atributos de una imagen
+		foto_nueva.src="imagenes/1.jpg";//agregamos ruta al metodo src del objeto imagen
+		
+		$("#foto").hover(function(){
+			
+			$(this).attr("src",foto_nueva.src);
+			
+		},
+		function(){
+			
+			$(this).attr("src","imagenes/4.jpg");
+			
+			
+		});	
+		
+    });
+
+
+</script>
+</head>
+
+<body>
+
+<img src="imagenes/4.jpg" width="300" height="200" id="foto">
+</body>
+</html>

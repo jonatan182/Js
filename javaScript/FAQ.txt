@@ -1,0 +1,16 @@
+hola juan, me surge una pregunta, por que no se indican los paréntesis  en los atributos del evento click, 
+ya que están llamando a funciones, no se si estoy mal pero mi conclusión  seria que "no se indican los paréntesis
+por que son atributos independientemente si sean funciones o no" Gracias,
+
+R:El tema es por la definición de la función click de la librearía JQuery. Esta función pide por parámetro 
+un manejador de evento (handler) el cual puede ser una función, pero siguiendo la sintaxis de la función click
+no hay que indicar los paréntesis del manejador en el caso de que los tenga.
+
+Puedes ver esta información en la documentación oficial de la API JQuery: https://api.jquery.com/click/
+Verás también que esta función es una abreviatura de la expresión .on( "click", handler ) 
+donde se pide de nuevo un manejador (handler) sin ser necesario indicar paréntesis.
+
+Olvidándonos de la función clic y la librería JQuery, cuando llamas a una función en JavaScript,
+hay que poner los paréntesis en la llamada. No así en otros lenguajes.
+
+Espero haber aclarado algo y no haberlo liado más. Un saludo

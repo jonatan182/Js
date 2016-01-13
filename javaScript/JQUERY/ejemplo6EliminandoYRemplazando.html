@@ -1,0 +1,83 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Documento sin t&iacute;tulo</title>
+<style>
+	#banner{
+		background-color:#FF0000;
+		width:200px;
+		position:absolute;
+		margin-left:200px;
+	}
+	img{
+		 width:250px; 
+		 height:175px; 
+		 float:left;
+		 margin:15px;
+	}
+	#arbol, #barco, #cascada, #ciervo{/*aplicamos diseño a div con su id respectivo creado con replaceWith*/
+		float:left;
+		margin:15px;
+		width:280px; 
+		height:175px;
+		font-size:36px; 
+	}
+</style>
+<script src="Jquery/jquery-1.6.3.min.js"></script>
+<script>
+	$(document).ready(function(){
+		/*var z = document.getElementById("Cerrar");
+		z.addEventListener("click",cerrar_banner, false);//indicamos z que este a la escucha de un evento click, que va a llamar a la funcion cerrar_banner*/
+		//con funcion encadenada
+		document.getElementById("Cerrar").addEventListener("click", cerrar_banner, false);
+		
+		//vamor a elaborar el primer pazo para la construccion de un carrito de compras
+		//de esta manera toca hacer con cada imagen
+		//document.getElementById("arbol").addEventListener("click", carrito, false);//indicamos  que el componente de id arbol este a la escucha de un evento click que este llamara a la funcion carrito
+		
+		//de esta manera aplicamos el evento a todas las imagenes en una sola instruccion
+		var imagenes = document.querySelectorAll("#carrete img");//selector descendiente que seleccionara a todas las imagenes que estan dentro del contenedor #carrete, esta funcion querySelectorAll nos devuelve un array
+		//recorremos el array de imagenes para indicar que queden a la escucha del evento click
+		for(var i=0; i<imagenes.length; i++){
+			imagenes[i].addEventListener("click",carrito,false);
+		}
+	});
+	
+	function cerrar_banner(){
+		$("#banner").remove();//para eliminar el banner
+	}
+	
+	function carrito(num){//el parametro num captura el objeto evento automaticamente ya que estamos llamando a este metodo desde el eventlistener
+		if(num.target==arbol){//me indica cual es el origen del evento, si ha sido la imagen1 o imagen2...etc
+			$("#arbol").replaceWith("<div id='arbol'>Agregado al carrito</div>");//para remplazar la imagen por el codigo html puesto en los parentesis
+		}if(num.target==barco){
+			$("#barco").replaceWith("<div id='barco'>Agregado al carrito</div>");//para remplazar la imagen por el codigo html puesto en los parentesis
+
+		}
+		if(num.target==cascada){
+			$("#cascada").replaceWith("<div id='cascada'>Agregado al carrito</div>");//para remplazar la imagen por el codigo html puesto en los parentesis
+
+		}
+		if(num.target==ciervo){
+			$("#ciervo").replaceWith("<div id='ciervo'>Agregado al carrito</div>");//para remplazar la imagen por el codigo html puesto en los parentesis
+
+		}
+	}
+
+</script>
+</head>
+<body>
+<div id="banner">
+Banner De Prueba
+<p id="Cerrar">Cerrar</p>
+</div>
+<div id="carrete">
+	<img src="imagenes/arbol.jpg" alt="arbol" id="arbol"/>
+	<img src="imagenes/barco.jpg" alt="barco" id="barco"/>
+	<img src="imagenes/cascada.jpg" alt="cascada" id="cascada"/>
+	<img src="imagenes/ciervo.jpg" alt="ciervo" id="ciervo"/>
+	
+</div>
+</body>
+</html>

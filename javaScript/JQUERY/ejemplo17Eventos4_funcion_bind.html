@@ -1,0 +1,80 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Documento sin título</title>
+<style>
+
+table{
+	text-align:center;
+	float:right;
+	margin-right:50px;
+
+}
+p{
+	font-size:1.3em;
+}
+
+
+#imagen_grande {
+	position: absolute;
+	margin-left: auto;
+	margin-right: auto;
+	left:0;
+	right:0;
+	width: 700px;
+	height: 405px;
+	z-index: 1;
+	border:dotted 5px #0000FF;
+	/*background-color: #FF0000;*/
+}
+</style>
+<script src="Jquery/jquery-1.6.3.min.js"></script>
+
+<script>
+     /* Funcion bin nos permite indicar varias eventos a un componente, y ademas permite enviar datos que se recuperan con .data*/
+	
+	//indicamos evento click al documento, no hace falta indicarlo dentro de ready por que el documento no esta dentro del body, si no que el body esta dentro del documento, es decir que no hace falta esperar que se cargue el contenido"body" para aplicar diseño al document ya que este es el primero que se crea.
+    //$(document).click(function(e){//indicamos que el document va a responder al evento click, y la funcion recibe el objeto evento e que tiene sus propiedades y metodos, entre ellos la coordenada en X y Y
+		//alert(e.clientX);//indicamos que va a mostrar en un alerto la posicion en x de donde se hizo click
+	//});
+	$(document).ready(function() {//para indicar codigo java script, despues de que se carguen todos los conmponentes el dom "Modelo de Objeto de Documento" del body, es decir ready espera que se cargue el body y luego indica lo que esta adentro.
+		var v_img1=$("#imagen1").attr("src");//recuperamos la ruta de la imagen
+		$("#imagen_grande").hide();//ocultamos el div, lo hacemos con hide para que la oculte de una, con fadeout se demoraria y se veria mal
+		$("#imagen1").bind("click",v_img1,abreImagen);//funcion bind nos permite indicar un evento, pasar datos y llamar al metodo cuando se cumpla el evento, en este caso respondera al evento click y pasara los datos de la variable v_img1 y llamara a la funcion abreImagen
+    });	
+	function abreImagen(e){
+		//$("#img_sustitucion").attr("src",e.data);//remplaza el atributo src, pero la imagen quedaria pequeña
+		e.stopPropagation();//estamos diciendo que el evento no se propague para otros objetos que contengan en el que estoy, es decir solo funcionara cuando de click en la imagen, pero como la imagen tambien esta dentro del documento este tambien esta a la escucha del evento click por lo que oculta la imagen tambien, entonces esta funcion stopPropagation nos ayuda a que el evento no se propague para otros objetos que contengan el objeto en el que estoy
+		$("#img_sustitucion").replaceWith("<img src='"+e.data+"' width='700' height='405'>");//remplazamos img_sustitucion por lo que esta adentro, con e.data recuperamos los datos que nos envio la funcion bin, indicamos un nuevo ancho y alto ya que con attr no podiamos
+		$("#imagen_grande").fadeIn(1000);
+	}
+	
+	//no hace ffalta inidcar los eventos del document dentro de la funcion ready ya que el documento se carga de primeras, es decir que cuando va a ejecutar esta linea el documento ya se carga, se carga antes que el body
+	$(document).bind("click keypress", function(){//indicamos que el documento tiene que apuntar a dos eventos el mouse y teclado
+		$("#imagen_grande").fadeOut(1000);
+	});
+</script>
+</head>
+
+<body>
+
+<div id="imagen_grande"><img src="" id="img_sustitucion"></div>
+
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean molestie, enim id convallis dignissim, justo mauris porttitor nisl, eu consectetur lectus nisl vitae velit. Etiam dignissim finibus ante porttitor vulputate. Maecenas porta rutrum lorem quis blandit. Nulla pretium turpis ac volutpat pharetra. Curabitur rhoncus tortor et condimentum congue. Nulla pharetra turpis sed eros efficitur vulputate. Cras bibendum, neque sed blandit mattis, elit nibh imperdiet nunc, in aliquam orci arcu sed arcu. Vestibulum sed velit suscipit, euismod neque vel, ultricies lorem. Cras ac lacus luctus, lacinia libero sed, aliquet augue. Sed pharetra nisi arcu, eu semper lacus aliquam non. Phasellus dui ante, auctor eu ante sodales, convallis laoreet massa. Etiam ac porta mi. Vestibulum feugiat maximus orci a pharetra. Vivamus commodo rhoncus lectus, sit amet maximus augue laoreet at. Curabitur a erat ultrices, vulputate risus vehicula, viverra purus.</p>
+
+<p>Donec nec pretium tellus. Cras volutpat eros a mi suscipit suscipit. Etiam sit amet sodales tellus. Nulla a odio volutpat, auctor orci at, bibendum eros. Integer suscipit velit eget venenatis varius. Suspendisse condimentum libero ut turpis placerat, eu cursus nisl pretium. Aenean condimentum iaculis felis, eu tristique neque porttitor sit amet.</p>
+<table border="0">
+  <tr>
+    <td><img src="imagenes/1.JPG" width="150" height="100" id="imagen1"></td>
+    
+  </tr>
+</table>
+<p>Phasellus ligula sem, volutpat ac turpis in, mattis consectetur metus. Sed eu risus ac enim laoreet suscipit et et tortor. Quisque interdum nisi risus, a convallis elit gravida fermentum. Maecenas vehicula massa nec lectus aliquam, eu dapibus mi interdum. Aliquam magna felis, vulputate ut purus ac, feugiat condimentum velit. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nullam sodales lorem sollicitudin commodo blandit. Pellentesque sollicitudin, quam ac fringilla eleifend, erat risus fringilla nulla, at vehicula ipsum sapien in diam. Aenean vel odio sollicitudin, iaculis velit at, scelerisque diam. Praesent eget sem id tellus sollicitudin dignissim.</p>
+
+<p>Integer eu euismod tortor, vitae sagittis mauris. Vivamus interdum accumsan lorem, et euismod ante facilisis sed. Phasellus pretium odio quis hendrerit varius. Etiam non arcu vitae dui cursus luctus. Vivamus a interdum ligula, nec tincidunt dui. Pellentesque sit amet enim quam. Duis consectetur purus purus, at interdum libero volutpat sit amet. Praesent commodo lacinia lacinia. Nam at euismod nunc, eu molestie ipsum. In sagittis vel enim in ultricies. Mauris semper, tellus sit amet mollis laoreet, sem diam iaculis purus, eget sodales nulla felis sed augue. Pellentesque in quam lorem. Vivamus ac nunc posuere, congue risus condimentum, lobortis sapien. Donec eu convallis est, vel convallis nisi.</p>
+
+<p>Suspendisse venenatis congue ipsum, vitae porttitor sapien egestas et. Nam efficitur nibh in mauris dapibus sagittis. Proin magna nunc, facilisis vel tincidunt a, maximus ut nisl. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Maecenas cursus mattis augue, non maximus odio. Pellentesque a nunc quis mi sagittis vestibulum. Proin diam urna, porttitor vitae eros nec, convallis tristique mi. Cras ut dolor at dolor convallis porta. Aenean gravida euismod scelerisque. </p>
+
+</body>
+</html>

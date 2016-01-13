@@ -1,0 +1,41 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Documento sin t&iacute;tulo</title>
+<style>
+	.miContenedor{
+		background-color:#999900;
+	}
+</style>
+<script src="Jquery/jquery-1.6.3.min.js"></script>
+
+<script>
+	$(document).ready(function(){/*documen hace referencia al documento a la pagina actual*/
+		alert($("#contenedor").html());/*mostramos un alerta del contenido de #contenedor*/
+		alert($("#contenedor #errores").html());/*mostramos un alerta del contenido de #errores*/
+		alert($("#contenedor #errores h2").html());/*mostramos un alerta del contenido de h2*/
+	
+//		$("#errores").html("<p>jonatan</p>");/*lo que conseguimos con esta instruccion es que lo que hay dentro del contendero #errores sea sustituido por lo que le estamos indicando a dentro de la funcion html, permite indicar codigos html como en este caso p*/
+		
+		$("#errores").append("<p>jonatan</p>");/*lo que conseguimos con esta instruccion es agregar a dentro del contenedor #errores lo que esta adentro de la funcion append, lo agrega DESPUES de lo que ya tenga, lo agrega debajo ya que h1 es una etiqueta blocklevel y esto quiere decir que contiene un salto de linea */
+		$("#errores").prepend("<p>No Hay</p>");/*lo que conseguimos con esta instruccion es agregar a dentro del contenedor #errores lo que esta adentro de la funcion prepend, lo agrega ANTES de lo que ya tenga*/
+		$("#errores").before("<p>Antes Del Contenedor #erroes</p>");/*lo que conseguimos con esta instruccion es agregar ANTES del contenedor #errores lo que esta adentro de la funcion before*/
+		$("#errores").after("<p>DESPUES Del Contenedor #erroes</p>");/*lo que conseguimos con esta instruccion es agregar DESPUES del contenedor #errores lo que esta adentro de la funcion after*/
+		$("#errores h2").text("agregamos texto con etiquetas html #erroes h2");/*sustituimos lo que esta adentro del contenedor #erores h2 por lo que esta adentro de la funcion html, esta funcion NO permite indicar etiquetas html como la funcion html, lo indica como un string normal, en este caso se mostrara como titulo ya que esta modificando lo que esta adentro de h2*/
+		
+	});
+</script>
+
+</head>
+
+<body>
+
+<div id="contenedor">
+	<div id="errores" class="miContenedor">
+		<h2>Errores</h2>
+	</div>
+</div>
+
+</body>
+</html>

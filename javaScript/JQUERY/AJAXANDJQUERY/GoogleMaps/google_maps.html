@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Google Maps</title>
+<link href="externa.css" rel="stylesheet">
+<style>
+
+#mapa h2 {
+	color: black;
+}
+#mapa p {
+	color: black;	
+}
+
+#mapa {
+	
+	height:400px;
+	width:760px;
+
+}
+</style>
+<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script> <!--linkeamos  el archivo JS del servidor GOOGLE  en este caso, ya que en ajax utilizamos el objeto xhr "xmlhttprequesthttp" para hacer una peticion a un servidor y que ese servidor nos responda a la peticion pues enviandonos la informacion requerida. Lo que sucede es que al servidor al que estamos accediendo utilizando ajax  como la pagina en la que estamos navegando se encuentra en el mismo edominio"servidor" pues esto es posible no hay ningun problema, pero esto no se permite cuando  la pagina que estamos visitando y el servidor al que pretendemos acceder utilizando ajax  se encuentran en dominios diferentes. y eso es una cuestion de seguridad para prevenir el fishin"creer que estas en un dominio pero en realidad estas en otro". Es decir que en ajax se impide  trabajar con servidores diferentes, a no ser que utilicemos una solucion que consiste en descargar un archivo js que este en el servidor remoto al que pretendemos acceder utilizando ajax. y es por eso que linkeamos el archivo js para que haga las peticiones pertinentes, de esa manera como este archivo js "link" y el servidor al que intentamos acceder estan en el mismo dominio no habra ningun problema-->
+<script type="text/javascript" src="Jquery/jquery-2.1.4.js"></script>  
+<script type="text/javascript" src="Jquery/jquery.gomap-1.3.2.min.js"></script> <!--pluguin para poder trabajar con google maps-->
+
+<script>
+
+	$(document).ready(function() {
+		
+		$("#mapa").goMap({//goMap es una funcion del pluguin gomap y tiene una seria de argumentos para ubicar el mapa en concreto, si no indicamos ningin argumento pues nos cargara el mapa en una zona indeterminada por que no tendra una longitud y latitud
+			latitude:4.717109,//con la longitud y la latitud indicamos la zona que queremos ver en este caso en mosquera
+			longitude:-74.221602,
+			zoom:17,//indicamos el zoom este valor esta comprendido entre 1 y 21 ciendo el 1 el mas lejano y el 320 el mas cercano
+			maptype:"TERRAIN",//indicamos que tipo de mapa nos carcgara si sera satelite"SATELLITE" o mapa"TERRAIN"
+			scaleControl:true//saca la ayuda de la escala
+		});
+		//Indicamos El Marcador El Globito Rojo
+		$.goMap.createMarker({
+			latitude:4.717109,//con la longitud y la latitud indicamos la zona que queremos que nos marke este punto en concreto
+			longitude:-74.221602,
+			title:"Mi Hogar",//indicamos un titulo para cuando pasemos el puntero en el marcador o el globo rojo
+			html:{
+				content:"<h2>El Mejor Hogar</h2>",//indicamos el contenido que acompañara al titulo
+				popup:true//indicamos que tendra un formato de popup
+			}
+		});	 
+		
+	}); 
+
+</script>
+
+</head>
+<body>
+
+	<div class="cabecera">
+		<p class="logo">Mapas</p>
+	</div>
+	<div class="contenido">
+		<div class="principal">
+			<h1>Google Maps</h1>
+            
+            <div id="mapa"></div>
+
+		</div>
+	</div>
+	
+
+</body>
+</html>

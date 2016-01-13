@@ -1,0 +1,54 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Documento sin t&iacute;tulo</title>
+</head>
+
+<body>
+	<table width="25%" border="0">
+		<tr>
+			<td><label for="textfield1"/>
+			<input type="text" name="textfield1" id="c_mensaje" ></td>
+			<td><label for="textfield2"/>
+			<input type="text" name="textfield2" id="c_intentos" ></td>
+		</tr>
+	</table>
+	
+	
+	
+	<script>//recordemos que el script puede ir en cualquier lado de las etiquetas html adentro y afuera
+	var aleatorio = Math.round(Math.random()*100);//generamos un numero aleatorio entre o y 100. match.round genera entre 0 y uno con decimales, por eso lo multiplicamos por 100 y lo redondiamos para dar un numero entero
+	var numero = 0;
+	var intentos = 0;
+	
+	/*Con objetos*/
+	var mensaje = document.getElementById("c_mensaje");/*para manipular los componentes html, desde html tambien se puede pero la diferencia es que con js podemos manipular los componentes dependiendo de condiciones*/
+	var intentos_consumidos = document.getElementById("c_intentos");
+	do{
+		numero = prompt("Introduce Un Entero Entre 0 y 100");
+		mensaje.style.fontSize="18px";//colocamos el texto de la caja de texto mas grande
+		if(aleatorio>numero){
+			//alert("Mas Alto");
+			//document.write("Mas Alto <br/>");
+			mensaje.value="Mas Alto";//asignamos valor a mensaje para que se muestre en la caja de texto
+		}
+		if(aleatorio<numero){
+			//alert("Mas Bajo");
+			//document.write("Mas Bajo <br/>");
+			mensaje.value="Mas Bajo";//asignamos valor a mensaje para que se muestre en la caja de texto
+			
+		}
+		intentos ++;
+		intentos_consumidos.value=intentos;
+		intentos_consumidos.style.fontSize="18px";//colocamos el texto de la caja de texto mas grande
+		intentos_consumidos.style.color="Red";//colocamos el texto de color rojo
+		intentos_consumidos.style.textAlign="Center";//centramos el texto de la caja de texto del form
+	}while(numero!=aleatorio);
+	alert("Correcto, Lo Has Conseguido En: "+intentos+" intentos");
+	mensaje.value="Correcto";
+	mensaje.style.color="Green";
+</script>
+</body>
+
+</html>

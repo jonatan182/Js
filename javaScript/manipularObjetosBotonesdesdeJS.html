@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Documento sin t&iacute;tulo</title>
+
+</head>
+
+<body id="body1">
+
+<input type="button" id="boton1"/>
+<input type="text" id="cajaT"/>
+
+<script>
+	var miboton = document.getElementById("boton1");//manipulamos botones
+	var mibody = document.getElementById("body1");//manipulamos el cuerpo
+	var mitext = document.getElementById("cajaT");
+	
+	miboton.style.width="250px";//indicamos ancho
+	miboton.style.height="250px";//indicamos alto
+	
+	mibody.style.background=prompt("Indica Un Color En Ingles Para El Color De Fondo");//indicamos el color al body
+	
+	mitext.focus();//indicamos el focus a la caja de texto
+</script>
+</body>
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Menús deslizantes</title>
+
+<style>
+#menu {
+	width: 70px;
+	background-color: rgb(110,138,195);
+	padding: 20px 20px 0 20px;
+	position: absolute;
+	left: -92px;
+	z-index: 100;
+}
+#menu img {
+	margin-bottom: 20px;
+	border: 1px solid rgb(0,0,0);
+}
+h1{
+	text-align:center;
+}
+p{
+	margin-left:150px;
+}
+</style>
+<script src="Jquery/jquery-1.6.3.min.js"></script>
+<script src="Jquery/jquery.easing-1.3.min.js"></script><!--Libreria de plugins para unas animaciones mas vistosas-->
+
+<script>
+$(document).ready(function() {
+	
+	$("#menu").hover(//indicamos que imagen1 va a responder al evento hover, es decir descecadenara la accion cuando coloquemos el mouse encima, y cuando quitemos el mouse de encima de la imagen1, Evento hover indica dos atributos, el primero indica la funcion que se ejecutara cuando se pase el mouse por encima de la imagen1, y el segundo indica otra funcion que se ejecutara cuando quitemos el mouse de encima de imagen1, hover es un evento de mouse que tiene dos atributos. 
+		function(){//cuando ponemos el mouse por encima
+			$(this).stop().animate({//indicamos que el menu tendra una animacion cuando se pase el mouse por encima, y tambien indicamos la funcion stop que nos permine que la cola de eventos no se genere, a si que no tendra que procesar toda esa cola de eventos que hemos ido generando pasando y quitando el mouse muchas veces sin dejar de terminar el tiempo de animacion
+				left:"0px"//indicamos que la posicion del menu se desplazara a la derecha ya que esta en -92 de espacio a la izquierda
+			},500/*durara medio segundo la animacion*/,"easeInSine"/*indicamos el efecto con el cual se desplazara o ejecutara la animacion, este efecto esta en el plugin easing*/);//termina animate
+		},
+		function(){//cuando quitamos el mouse de encima
+			$(this).stop().animate({//tambien indicamos la funcion stop para que no se genere la cola de eventos, es decir se interrumpe la cola de eventos.
+				left:"-92px"//indicamos que la posicion del menu se desplzara a la izquierda ya que esta en 0p de espacio
+			},1500/*dura segundo y medio la animacion, es decir en desplazarce a la izquierda*/,"easeOutBounce"/*indicamos el efecto con el cual ejecutara la animacion*/);
+		}
+	);
+  
+}); 
+</script>
+</head>
+<body>
+
+  <div id="menu">
+  <img src="imagenes/1.jpg" width="70" height="70" alt="blue">
+  <img src="imagenes/2.jpg" width="70" height="70" alt="green">
+  <img src="imagenes/3.jpg" width="70" height="70" alt="orange">
+  <img src="imagenes/4.jpg" width="70" height="70" alt="purple">
+  <img src="imagenes/1.jpg" width="70" height="70" alt="red">
+  <img src="imagenes/2.jpg" width="70" height="70" alt="yellow">
+</div>
+
+<h1>Menús deslizantes</h1>
+<p>Pasa el ratón por encima de la pestaña de la izquierda</p>
+
+
+</body>
+</html>

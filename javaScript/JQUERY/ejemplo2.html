@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<title>Documento sin t&iacute;tulo</title>
+<script src="Jquery/jquery-1.6.3.min.js"></script>
+
+<script>/*con jquery es mas facil de hacer todo*/
+	$(document).ready(function (){/*para que el codigo se ejecute despues de cargar el documento html*/
+		$("#carrete img").hide();/*selector descendiente para referirnos a la etiqueta a modificar, esta instruccion es a lo que se ledenomina un loop automatico que nos proporciona jquery, sin jquery tendriamos que hacerlo con un for a si como abajo lo elaboramos. tambien observamos las funciones encadenadas, de esta manera ocultamos las imagenes sin necesidad del boocle, ya que este es automatico*/
+	});
+
+</script>
+</head>
+
+<body>
+<div id="carrete">
+	<img src="imagenes/arbol.jpg" alt="arbol" width="250px" height="175" />
+	&nbsp;
+	<img src="imagenes/barco.jpg" alt="barco" width="250px" height="175" />
+	&nbsp;
+	<img src="imagenes/cascada.jpg" alt="cascada" width="250px" height="175" />
+	&nbsp;
+	<img src="imagenes/ciervo.jpg" alt="ciervo" width="250px" height="175" />
+	&nbsp;
+</div>
+<!--<script>//este escript lo indicamos de ultimas para que una vez cargado las imagenes se ejecute este codigo, encambio con jquery  no es a si ya que $(document).ready espera que se cargue todo el contenido y hay si ejecuta el script
+	/*vamos hacer que las imagenes no aparezcan, es decir ocultaremos las imagenes con javascript*/
+	/*permite seleccionar los elementos que tenemos en una pagina web en base a un selector css "un selector descendiente "*/
+	var imagenes = document.querySelectorAll("#carrete img");//seleccioname todas las etiquetas que correspondan a lo que vamos a introducir dentro de los parentesis "seleccionamos todas la imagenes que estan dentro del div carrete, de esta manera la variable imagenes se convierte en un array"
+	for(var i=0; i<imagenes.length;i++){/*para recorrer el array de imagenes, ya que es donde estan todas las imagenes*/
+		imagenes[i].style.visibility="hidden";/*ocultamos las imagenes, una por una*/
+	}
+	
+	
+</script>-->
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Documento sin título</title>
+<script src="Jquery/jquery-1.6.3.min.js"></script>
+<script>
+
+	open("http://www.pildorasinformaticas.es","Pildo1","width=400, height=300 left=300, top=200");//sirve para indicarle al navegador que abra una ventana emergente, esta funcion tiene tres argumentos, el primero es la direccion del documento que quieres que te abra en esta ventana emergente, el segundo parametro es un nombre identificativo que le podemos dar a esta pagina, es un nombre identificativo a nivel interno, no aparece en la barra de titulo ni en ningun otro sitio, y como tercer parametro tenemos el tamaño y la posicion. una vez cargada la pagina el navegador nos va a bloquear el pop-ups, este termino hace referencia a las ventanas emergentes, y las ventanas emergentes son las ventanas que emergen automáticamente (generalmente sin que el usuario lo solicite). lo hace por seguridad ya que muchas paginas lo utilizaban paara publicidad, en este caso tenemos que permitit pop-ups para ver el ejemplo
+	
+	//podemos indicar muchas ventanas emergentes que se arbiran con tan solo colocando varios instrucciones open(), cambiando el nombre identificativo por que si son iguales los nombre identificativos se cree que es la misma ventana
+	open("http://www.pildorasinformaticas.es","Pildo2","width=400, height=300 left=100, top=200");
+	open("http://www.pildorasinformaticas.es","Pildo3","width=400, height=300 left=600, top=200");
+	
+	//si colocaramos la instruccion en un bucle for y edentro de la instruccion for cambiaramos el nombre construiremos una pagina que abrira muchas ventanas emergentes como en muchas que hay en la web.
+	
+	//los atributos de open se pueden guardar en variables ej.
+	var propVent = "width=400, height=300 left=800, top=200";
+	
+	open("http://www.pildorasinformaticas.es","Pildo4",propVent);
+
+</script>
+</head>
+
+<body>
+<a href="http://www.pildorasinformaticas.es">Ir a Píldoras</a>
+<br><br><br>
+<a href="" id="botonCerrar">Cerrar</a>
+</body>
+</html>
